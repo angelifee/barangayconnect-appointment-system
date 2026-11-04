@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BarangayConnect | Appointment Booking</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">BARANGAY SERVICE PORTAL</p>
+        <h1>BarangayConnect</h1>
+        <p class="subtitle">Simple appointment booking for faster community service.</p>
+      </div>
+      <button id="adminToggle" class="secondary-button" type="button">Open Admin View</button>
+    </header>
+
+    <main class="page-shell">
+      <section id="residentView" class="view-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RESIDENT PORTAL</p>
+            <h2>Book a barangay appointment</h2>
+          </div>
+          <span class="status-pill">Online booking</span>
+        </div>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+
+        <form id="appointmentForm" class="card form-grid">
+          <label>
+            Full name
+            <input id="residentName" name="residentName" required maxlength="80" placeholder="e.g., Juan Dela Cruz" />
+          </label>
+          <label>
+            Contact number
+            <input id="contactNumber" name="contactNumber" required pattern="[0-9+() -]{7,20}" placeholder="e.g., 09171234567" />
+          </label>
+          <label>
+            Barangay service
+            <select id="serviceType" name="serviceType" required>
+              <option value="">Select a service</option>
+              <option>Barangay Clearance</option>
+              <option>Certificate of Residency</option>
+              <option>Certificate of Indigency</option>
+              <option>Community Consultation</option>
+            </select>
+          </label>
+          <label>
+            Preferred date
+            <input id="appointmentDate" name="appointmentDate" type="date" required />
+          </label>
+          <label>
+            Preferred time
+            <select id="appointmentTime" name="appointmentTime" required>
+              <option value="">Select a time</option>
+              <option>09:00 AM</option>
+              <option>10:00 AM</option>
+              <option>11:00 AM</option>
+              <option>01:00 PM</option>
+              <option>02:00 PM</option>
+              <option>03:00 PM</option>
+            </select>
+          </label>
+          <label class="full-width">
+            Purpose or additional details
+            <textarea id="purpose" name="purpose" required maxlength="300" rows="4" placeholder="Briefly describe your request"></textarea>
+          </label>
+          <div class="full-width form-actions">
+            <button class="primary-button" type="submit">Submit Appointment</button>
+            <button class="text-button" id="clearForm" type="button">Clear form</button>
+          </div>
+        </form>
+
+        <section class="card lookup-card">
+          <div>
+            <p class="eyebrow">CHECK STATUS</p>
+            <h3>Find an appointment</h3>
+            <p class="muted">Use the reference number given after booking.</p>
+          </div>
+          <form id="lookupForm" class="lookup-form">
+            <input id="referenceNumber" required placeholder="e.g., BRG-AB12CD" />
+            <button class="secondary-button" type="submit">Check Status</button>
+          </form>
+          <div id="lookupResult" class="lookup-result"></div>
+        </section>
+      </section>
+
+      <section id="adminView" class="view-section hidden">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ADMIN PORTAL</p>
+            <h2>Appointment management</h2>
+          </div>
+          <button id="backToResident" class="secondary-button" type="button">Back to Resident View</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span>Total</span><strong id="totalCount">0</strong></div>
+          <div class="stat-card"><span>Pending</span><strong id="pendingCount">0</strong></div>
+          <div class="stat-card"><span>Approved</span><strong id="approvedCount">0</strong></div>
+          <div class="stat-card"><span>Completed</span><strong id="completedCount">0</strong></div>
+        </div>
+        <div class="card table-card">
+          <div class="table-toolbar">
+            <div>
+              <p class="eyebrow">APPOINTMENT RECORDS</p>
+              <h3>Manage requests</h3>
+            </div>
+            <select id="statusFilter" aria-label="Filter by status">
+              <option value="All">All statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead><tr><th>Reference</th><th>Resident</th><th>Service</th><th>Date & time</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="appointmentsTableBody"></tbody>
+            </table>
+          </div>
+          <p id="emptyTable" class="empty-state">No appointment records yet.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">BarangayConnect · Academic Final Project Prototype</footer>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
