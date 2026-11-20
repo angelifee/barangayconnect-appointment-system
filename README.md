@@ -1,3 +1,7 @@
+## GitHub Repository
+
+https://github.com/angelifee/barangayconnect-appointment-system
+
 # BarangayConnect
 
 BarangayConnect is a simple Barangay Appointment Booking System prototype. Residents can request an appointment, receive a reference number, and check the status of their request. An administrative view allows appointment statuses to be managed.
